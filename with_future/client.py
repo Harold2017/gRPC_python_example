@@ -12,10 +12,11 @@ def run():
     def process_response(response):
         print(response.result())
 
-    with grpc.insecure_channel('localhost:10000') as channel:
-        stub = greeting_pb2_grpc.GreetingStub(channel)
-        response = stub.Hello.future(greeting_pb2.HelloRequest(name='you'))
-        response.add_done_callback(process_response)
+    channel = grpc.insecure_channel('localhost:10000')
+    stub = greeting_pb2_grpc.GreetingStub(channel)
+    response = stub.Hello.future(greeting_pb2.HelloRequest(name='Sophia'))
+    response.add_done_callback(process_response)
+    print('Sophia, i like you!')
     print("Greeter client received: " + response.result().greetings)
 
 

@@ -9,6 +9,7 @@ import time
 
 class Greeter(greeting_pb2_grpc.GreetingServicer):
     def Hello(self, request, context):
+        time.sleep(5)
         return greeting_pb2.Response(greetings='Hello, %s!' % request.name)
 
 
